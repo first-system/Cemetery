@@ -160,36 +160,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Burial.cs">
-      <DependentUpon>ManDBModel.tt</DependentUpon>
+    <Compile Include="Migrations\201806121930331_Initial.cs" />
+    <Compile Include="Migrations\201806121930331_Initial.Designer.cs">
+      <DependentUpon>201806121930331_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Categories.cs">
-      <DependentUpon>ManDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Man.cs">
-      <DependentUpon>ManDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ManDBModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ManDBModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ManDBModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ManDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ManDBModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ManDBModel.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BurialPlace.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\DataContext.cs" />
+    <Compile Include="Models\Deceased.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\ManDB.mdf" />
-    <Content Include="App_Data\ManDB_log.ldf">
-      <DependentUpon>ManDB.mdf</DependentUpon>
+    <Content Include="App_Data\Repository.mdf" />
+    <Content Include="App_Data\Repository_log.ldf">
+      <DependentUpon>Repository.mdf</DependentUpon>
     </Content>
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\Antlr3.Runtime.pdb" />
@@ -400,17 +385,9 @@
     <Content Include="Content\js\vendors\jquery.sticky.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
-    <Content Include="Models\ManDBModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ManDBModel.edmx</DependentUpon>
-      <LastGenOutput>ManDBModel.Context.cs</LastGenOutput>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="Models\ManDBModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ManDBModel.edmx</DependentUpon>
-      <LastGenOutput>ManDBModel.cs</LastGenOutput>
-    </Content>
-    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -433,13 +410,6 @@
     <Content Include="bin\roslyn\vbc.rsp" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="bin\WebApplication9.dll.config" />
-    <EntityDeploy Include="Models\ManDBModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ManDBModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ManDBModel.edmx.diagram">
-      <DependentUpon>ManDBModel.edmx</DependentUpon>
-    </Content>
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -456,6 +426,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\images\s\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201806121930331_Initial.resx">
+      <DependentUpon>201806121930331_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

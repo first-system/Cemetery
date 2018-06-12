@@ -4,14 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication9.Models;
+using System.Data.Entity;
 
 namespace WebApplication9.Controllers
 {
     public class HomeController : Controller
     {
         string fileName; // переменная путь файла
-        // GET: Home
-        private Models.ManDBEntities5 db = new Models.ManDBEntities5();//Модель Бд
+                         // GET: Home
+
         public ActionResult Index()
         {
             return View();
@@ -31,13 +32,17 @@ namespace WebApplication9.Controllers
         {
             return View();
         }//Страница статьи
-       
+
         public ActionResult Search()
         {
-            var items = db.Man;
-            return View(items);
+            List<Deceased> deceaseds;
+            using (DataContext DB = new DataContext())
+            {
+                deceaseds = new List<Deceased>(DB.Deceaseds.Include(c=>c.Category).Include(a=>a.BurialPlace));
+            }
+            return View(deceaseds);
         }//страница поиска
-     
+
         public ActionResult History()
         {
             return View();
@@ -51,50 +56,63 @@ namespace WebApplication9.Controllers
         }
 
         [HttpPost]//Принимаюший метод
-        public ActionResult Form(string LastName,string FirstName, string Parcicle, string Datebith,string DateDead,string NumUch,string NumMog,string opis,string category, HttpPostedFileBase upload)//обработка данных страницы
+        public ActionResult Form(string LastName, string FirstName, string Parcicle, DateTime Datebith, DateTime DateDead, int NumUch, int NumMog, string opis, string category, HttpPostedFileBase upload)//обработка данных страницы
         {
-            
             //получаем файл
             if (upload != null)
             {
-              fileName = System.IO.Path.GetFileName(upload.FileName);//получам путь файла               
-              upload.SaveAs(Server.MapPath("~/Content/images/Photo/" + fileName));// сохраняем файл в папку Files в проекте
+                fileName = System.IO.Path.GetFileName(upload.FileName);//получам путь файла               
+                upload.SaveAs(Server.MapPath("~/Content/images/Photo/" + fileName));// сохраняем файл в папку Files в проекте
             }
             else
             {
                 fileName = "notphoto.jpg";// Если файл отсутсвует, загрузить картинку, нет фото.
             }
-         
-            Man man = new Man // Объявлем класс
-            {
-                Имя = FirstName,
-                Фамилия = LastName,
-                Отчество = Parcicle,
-                Дата_рождения = Datebith,
-                Дата_смерти = DateDead,
-                Номер_участка = NumUch,
-                Номер_могилы = NumMog,
-                Описание = opis,
-                Категория = category,
-                Фотография = "/Content/images/Photo/" + fileName,
-                search = FirstName + " " + LastName + " " + Parcicle + " " + Datebith + " " + DateDead + " " + NumUch + " " + NumMog + " " + opis + " "+category
-            }; 
 
-            db.Man.Add(man);//Запись в бд
-            db.SaveChanges();//Сохранение
+            using (DataContext DB = new DataContext())
+            {
+                //Ищем могилу в базе,если существует - пусть будет она. Если нет - копаем
+                var burplace = DB.BurialPlaces.FirstOrDefault(x => x.NArea == NumUch && x.NBurial == NumMog);
+                if (burplace == null)
+                    burplace = new BurialPlace { NArea = NumUch, NBurial = NumMog };
+
+                Category categ = DB.Categories.FirstOrDefault(d => d.CategoryName == category);
+
+                Deceased man = new Deceased // Объявляем класс
+                {
+                    FName = FirstName,
+                    LName = LastName,
+                    SName = Parcicle,
+                    DOB = Datebith,
+                    DateDeath = DateDead,
+                    // Присобачил метод проверки: если место существует - то хороним
+                    // там, или же создаем новое.
+                    BurialPlace = burplace,
+                    Description = opis,
+                    //Надо присобачить выбор из раскрывающегося списка
+                    Category = categ,
+                    Photo = "~/Content/images/Photo/" + fileName,
+                    Search = FirstName + " " + LastName + " " + Parcicle + " " + Datebith + " " + DateDead + " " + NumUch + " " + NumMog + " " + opis + " " + category
+                };
+                DB.Deceaseds.Add(man);//Запись в бд
+                DB.SaveChanges();//Сохранение
+            }
             return RedirectToAction("Search");//Возврат на страницу
         }
 
         [HttpGet]//Отдающий метод
         public ActionResult Find(string findtext)//метод поиска по бд
         {
-            var men = from s in db.Man//прописываем запрос
-                      select s;
-            if (!String.IsNullOrEmpty(findtext))
+            using (DataContext DB = new DataContext())
             {
-                men = men.Where(s => s.search.Contains(findtext));//Запрос поиска
+                var men = from s in DB.Deceaseds//прописываем запрос
+                          select s;
+                if (!String.IsNullOrEmpty(findtext))
+                {
+                    men = men.Where(s => s.Search.Contains(findtext)).Include(c => c.Category).Include(a => a.BurialPlace);//Запрос поиска
+                }
+                return View(men.ToList());// вывод содержимого
             }
-            return View(men.ToList());// вывод содержимого
         }
     }
 }
