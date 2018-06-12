@@ -1,0 +1,69 @@
+﻿@model IEnumerable<WebApplication9.Models.Man>
+    @{
+    Layout = "/Views/MasterView.cshtml";
+    }
+    <div class="form23">
+        @using (Html.BeginForm("Find", "Home", FormMethod.Get))
+        {
+        <input class="textbox23" type="text" name="findtext" />
+        //@Html.TextBox("findtext");
+        <input class="button23" type="submit" value="Найти" />
+        }
+    </div>
+
+    <div class=" form">
+        @using (Html.BeginForm("Form", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+        <input name="firstName" placeholder="Укажите имя" class="textbox" required />
+        <input name="LastName" placeholder="Укажите Фамилию" class="textbox" required />
+        <input name="Parcicle" placeholder="Укажите Отчество" class="textbox" required />
+        <input name="DateBith" placeholder="Укажите Дату рождения" class="textbox" required />
+        <input name="DateDead" placeholder="Укажите Дату смерти" class="textbox" required />
+        <input name="NumUch" placeholder="Укажите Номер участка" class="textbox" required />
+        <input name="NumMog" placeholder="Укажите Номер могилы" class="textbox" required />
+        <input name="Opis" placeholder="Укажите Описание" class="textbox" required />
+        <input name="category" placeholder="Укажите Категорию" class="textbox" required />
+        <br />
+        <input type="file" name="upload" /><br>
+        <input class="button" type="submit" value="Добавить" />
+        }
+    </div>
+
+
+    <aside>
+        <div class="free-course free-course-aside side-widget">
+
+            <table>
+                <tr>
+                    <th>Фотография</th>
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                    <th>Отчетсво</th>
+                    <th>Дата рождения</th>
+                    <th>Дата смерти</th>
+                    <th>Номер участка</th>
+                    <th>Номер могилы</th>
+                    <th>Описание</th>
+                    <th>Категория</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        <img class="imgsize" src="@item.Фотография" />
+                    </td>
+                    <td>@item.Фамилия</td>
+                    <td>@item.Имя</td>
+                    <td>@item.Отчество</td>
+                    <td>@item.Дата_рождения</td>
+                    <td>@item.Дата_смерти</td>
+                    <td>@item.Номер_участка</td>
+                    <td>@item.Номер_могилы</td>
+                    <td>@item.Описание</td>
+                    <td>@item.Категория</td>
+                </tr>
+                }
+            </table>
+        </div>
+    </aside>
+
