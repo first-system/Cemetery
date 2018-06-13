@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace WebApplication9.Models
+namespace Cemetery.Models
 {
     public class Category
     {

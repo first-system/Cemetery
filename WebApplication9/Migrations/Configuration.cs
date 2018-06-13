@@ -1,23 +1,24 @@
-namespace WebApplication9.Migrations
+namespace Cemetery.Migrations
 {
-    using System;
-    using System.Data.Entity;
+    using Cemetery.Models;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<WebApplication9.Models.DataContext>
+
+    internal sealed class Configuration : DbMigrationsConfiguration<Cemetery.Models.DataContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(WebApplication9.Models.DataContext context)
+        protected override void Seed(Cemetery.Models.DataContext DB)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
+            DB.Roles.Add(new Role { Id = 1, RoleName = "admin" });
+            DB.Roles.Add(new Role { Id = 2, RoleName = "user" });
+            DB.SaveChanges();
+            DB.Users.Add(new User { Id = 1, Login = "Admin", Password = EncoderGuid.Encoder.GetHashString("2033"), RoleId = 1 });
+            DB.SaveChanges();
+            base.Seed(DB);
         }
     }
 }

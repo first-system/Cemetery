@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace WebApplication9.Models
+namespace Cemetery.Models
 {
     public class Deceased
     {

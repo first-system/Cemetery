@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -37,109 +36,127 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="~/Content/css/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/Content/css/style.css">
+        <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/Content/css/style.css">
+    
+    <link href="~/Content/css/Site.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
-    <div class="wrapper">
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-xs-9">
+                    <a href="/Home/Index" class="logo"><img src="~/Content/images/ico/231005.png" class="img-responsive" alt="" /></a>
+                </div>
+                <div class="col-md-8">
+                    <!--
+                        <div class="search-content">
+                         <form>
+                             <input type="text" placeholder="Начните писать текст здесь...">
+                         </form>
+                     </div>
+                    -->
+                    <div class="top-post">
+                        <span><h3><a href="/Home/Index">"Воскресенское кладбище" г. Саратова</a></h3></span>
+                        <h5><a href="https://ru.wikipedia.org/wiki/%D0%92%D0%BE%D1%81%D0%BA%D1%80%D0%B5%D1%81%D0%B5%D0%BD%D1%81%D0%BA%D0%BE%D0%B5_%D0%BA%D0%BB%D0%B0%D0%B4%D0%B1%D0%B8%D1%89%D0%B5_(%D0%A1%D0%B0%D1%80%D0%B0%D1%82%D0%BE%D0%B2)">Воскресенское кладбище (Саратовский некрополь) возникло более 150 лет назад, в 1836 году. Возникновение его было связано с трагическими событиями в Саратове, когда город охватила страшнейшая эпидемия холеры, унесшая тысячи жизней. Каждый день умирало около 300 человек.</a></h5>
+                    </div>
+                </div>
+                <div class="col-md-1 col-xs-3">
+                    <div class="search-trigger"><a href="/Home/Search"><img src="~/Content/images/ico/search.png" alt="Поиск" title="Поиск захоронений" /></a></div>
+                </div>
+            </div>
 
-        <!-- HEADER -->
-        <header>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-xs-9">
-                        <a href="/Home/Index" class="logo"><img src="~/Content/images/ico/231005.png" class="img-responsive" alt="" /></a>
-                    </div>
-                    <div class="col-md-8">
-                        <!--
-                            <div class="search-content">
-                             <form>
-                                 <input type="text" placeholder="Начните писать текст здесь...">
-                             </form>
-                         </div>
-                        -->
-                        <div class="top-post">
-                            <span><h3><a href="/Home/Index">"Воскресенское кладбище" г. Саратова</a></h3></span>
-                            <h5><a href="https://ru.wikipedia.org/wiki/%D0%92%D0%BE%D1%81%D0%BA%D1%80%D0%B5%D1%81%D0%B5%D0%BD%D1%81%D0%BA%D0%BE%D0%B5_%D0%BA%D0%BB%D0%B0%D0%B4%D0%B1%D0%B8%D1%89%D0%B5_(%D0%A1%D0%B0%D1%80%D0%B0%D1%82%D0%BE%D0%B2)">Воскресенское кладбище (Саратовский некрополь) возникло более 150 лет назад, в 1836 году. Возникновение его было связано с трагическими событиями в Саратове, когда город охватила страшнейшая эпидемия холеры, унесшая тысячи жизней. Каждый день умирало около 300 человек.</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-md-1 col-xs-3">
-                        <div class="search-trigger"><a href="/Home/Search"><img src="~/Content/images/ico/search.png" alt="Поиск" title="Поиск захоронений" /></a></div>
-                    </div>
-                </div>
-                <div class="freebie-btn">
-                    <a href="/Home/Map"></a>
-                </div>
-            </div>
-        </header>
-        <!-- HEADER -->
-        <!-- MENU -->
-        <nav class="navbar navbar-default">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <!-- Navmenu -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li><a href="/Home/index">Главная</a></li>
-                        <li class="dropdown">
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="/Home/Map">Карта</a></li>
-                                <li><a href="/Home/Search"><img src="~/Content/images/ico/search1.png" class="box4" /> Поиск</a></li>
-                                <li><a href="/Home/Article">Статьи</a></li>
-                                <li><a href="/Home/Contact">Контакты</a></li>
-                                <li><a href="/Home/History">История</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/Home/Map">Карта</a></li>
-                        <li><a href="/Home/Search"><img src="~/Content/images/ico/search1.png" class="box4" /> Поиск</a></li>
-                        <li><a href="/Home/Article">Статьи</a></li>
-                        <li><a href="/Home/Contact">Контакты</a></li>
-                        <li><a href="/Home/History">История</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- MENU -->
-        <!-- MAIN CONTENT -->
-        <div class="inner-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <!-- BLOG POST -->
-                        <div class="home-blog">
-                            @RenderBody()
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--Футер-->
-            <div class="footer-bottom">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <div class="butdiv">
-                                <a class="obl" href='#'>Наверх</a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="UserLink">
+                    Здравствуйте,
+                    <a class="UserLinkMenu" href="javascript:void(0);" tabindex="1">@User.Identity.Name</a> (@Html.ActionLink("Выход", "Logout", "Account", null, new { @class = "LogoutLink" }))
+                    <div class="UserSubmenu">
+                        <div class="UserSubMenuBtn">@Html.ActionLink("Личный кабинет", "PrivateOffice", "Home")</div>
+
+                        <div class="UserSubMenuBtn">
+                            <a href="#2" class="main-item">подпункт 2</a>
+                            <div class="sub-menu">
+                                <div><a href="#1">подпункт 1</a></div>
+                                <div><a href="#2">подпункт 2</a></div>
+                                <div><a href="#3">подпункт 3</a></div>
                             </div>
-                            <p>&copy; 2018</p>
                         </div>
+                        <div class="UserSubMenuBtn">@Html.ActionLink("Выход", "Logout", "Account")</div>
                     </div>
                 </div>
-            </div>
-            <!-- Конец футера -->
+            }
+            else
+            {
+                <div class="Auth-Reg-panel">
+                    @Html.ActionLink("Войти", "Login", "Account", null, new { @class = "AccLink" }) |
+                    @Html.ActionLink("Регистрация", "Register", "Account", null, new { @class = "AccLink" })
+                </div>
+            }
         </div>
-        <script src="~/Content/js/jquery.js"></script>
-        <script src="~/Content/js/bootstrap.min.js"></script>
-        <script src="~/Content/js/vendors/jquery.sticky.js"></script>
-        <script src="~/Content/js/bs-header.js"></script>
-        <script src="~/Content/js/main.js"></script>
+    </header>
+
+
+    <!-- HEADER -->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Navmenu -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/Home/index">Главная</a></li>
+                    <li class="dropdown">
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/Home/Map">Карта</a></li>
+                            <li><a href="/Home/Search"><img src="~/Content/images/ico/search1.png" class="box4" /> Поиск</a></li>
+                            <li><a href="/Home/Article">Статьи</a></li>
+                            <li><a href="/Home/Contact">Контакты</a></li>
+                            <li><a href="/Home/History">История</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/Home/Map">Карта</a></li>
+                    <li><a href="/Home/Search"><img src="~/Content/images/ico/search1.png" class="box4" /> Поиск</a></li>
+                    <li><a href="/Home/Article">Статьи</a></li>
+                    <li><a href="/Home/Contact">Контакты</a></li>
+                    <li><a href="/Home/History">История</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+    <!-- MAIN CONTENT -->
+    <div class="inner-content">
+        @RenderBody()
+    </div>
+
+
+    <!--Футер-->
+    <div>
+        <div>
+            <a class="obl" href='#'>Наверх</a>
+        </div>
+        <p>&copy; 2018</p>
+    </div>
+    <!-- Конец футера -->
+
+
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/vendors/jquery.sticky.js"></script>
+    <script src="~/Content/js/bs-header.js"></script>
+    <script src="~/Content/js/main.js"></script>
 </body>
 </html>
 

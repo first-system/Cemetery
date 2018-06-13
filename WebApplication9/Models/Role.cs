@@ -5,14 +5,10 @@ using System.Web;
 
 namespace Cemetery.Models
 {
-    public class BurialPlace
+    public class Role
     {
         public int Id { get; set; }
 
-        public int NArea { get; set; }
-
-        public int NBurial { get; set; }
-
-        public List<Deceased> Deceaseds { get; set; }
+        public string RoleName { get; set; }
     }
 }
